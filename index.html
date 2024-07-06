@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Budget Tracker (€)</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#3498db">
+</head>
+<body>
+    <div class="container">
+        <h1>Enhanced Budget Tracker (€)</h1>
+        <div id="budget-section">
+            <label for="monthly-budget">Set Monthly Budget: €</label>
+            <input type="number" id="monthly-budget" placeholder="Enter budget">
+            <button onclick="setMonthlyBudget()">Set Budget</button>
+        </div>
+        <div id="month-selector-section">
+            <label for="month-selector">Select Month:</label>
+            <select id="month-selector" onchange="changeMonth()"></select>
+        </div>
+        <div id="summary-section">
+            <div id="current-month"></div>
+            <div id="total"></div>
+            <div id="budget-progress"></div>
+            <div id="budget-remaining"></div>
+        </div>
+        <div id="input-section">
+            <input type="text" id="description" placeholder="Description">
+            <input type="number" id="amount" placeholder="Amount">
+            <input type="date" id="date">
+            <select id="category">
+                <option value="Food">Food</option>
+                <option value="Transport">Transport</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="Bills">Bills</option>
+                <option value="Other">Other</option>
+            </select>
+            <button onclick="addExpense()">Add Expense</button>
+        </div>
+        <div id="expenses"></div>
+        <div id="chart-container">
+            <canvas id="expenseChart"></canvas>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+              .then(registration => console.log('ServiceWorker registration successful'))
+              .catch(err => console.log('ServiceWorker registration failed: ', err));
+        }
+    </script>
+</body>
+</html>
